@@ -29,10 +29,10 @@ static void update_time() {
     text_layer_set_text(s_date_layer, s_date_buf);*/
 
     // Add short weekday, remove possible leading zero day and short month
-    strftime(wday, sizeof(wday), "%a", t);
-    strftime(day,  sizeof(day),  "%d", t);
+    strftime(wday, sizeof(wday), "%a", tick_time);
+    strftime(day,  sizeof(day),  "%d", tick_time);
     if (day[0] == '0') memmove(day, day + 1, 2);
-    strftime(mon,  sizeof(mon),  "%b", t);
+    strftime(mon,  sizeof(mon),  "%b", tick_time);
 
     // Short weekday + num day in line 1, Short month in line 2
     snprintf(s_date_buf, sizeof(s_date_buf), "%s %s\n%s", wday, day, mon);
