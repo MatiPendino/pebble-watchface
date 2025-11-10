@@ -35,7 +35,7 @@
         {
           "type": "bitmap",
           "name": "IMAGE_BACKGROUND",
-          "file": "images/background-white.png"
+          "file": "images/back.png"
         }
       ]
     }
