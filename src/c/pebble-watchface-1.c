@@ -55,9 +55,9 @@ static void layout_layers(Window *window) {
 
   // Date (left bottom)
   if (!s_date_layer) {
-    s_date_layer = text_layer_create(GRect(0, 0, 10, 10)); // temp, set real frame next
+    s_date_layer = text_layer_create(GRect(0, 0, 10, 10));
     text_layer_set_background_color(s_date_layer, GColorClear);
-    text_layer_set_text_color(s_date_layer, GColorWhite);
+    text_layer_set_text_color(s_date_layer, GColorBlack);
     text_layer_set_text_alignment(s_date_layer, GTextAlignmentLeft);
     text_layer_set_font(s_date_layer, s_date_font);
     layer_add_child(root, text_layer_get_layer(s_date_layer));
