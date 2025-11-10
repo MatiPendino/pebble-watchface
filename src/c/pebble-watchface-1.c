@@ -31,7 +31,7 @@ static void update_time() {
     // Add short weekday, remove possible leading zero day and short month
     strftime(wday, sizeof(wday), "%a", tick_time);
     strftime(day,  sizeof(day),  "%d", tick_time);
-    if (day[0] == '0') memmove(day, day + 1, 2);
+    //if (day[0] == '0') memmove(day, day + 1, 2);
     strftime(mon,  sizeof(mon),  "%b", tick_time);
 
     // Short weekday + num day in line 1, Short month in line 2
@@ -98,6 +98,7 @@ static void main_window_load(Window *window) {
   // Create GBitmap, Bitmaplayer, set the bitmap onto the layer and add to the window
   s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND);
   s_background_layer = bitmap_layer_create(bounds);
+  bitmap_layer_set_alignment(s_background_layer, GAlignTop);
   bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_background_layer));
 
