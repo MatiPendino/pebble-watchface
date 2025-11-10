@@ -88,8 +88,8 @@ static void layout_layers(Window *window) {
   const int16_t gap_y = 2;
 
   // Y positions near bottom
-  const int16_t mon_y = bounds.size.h - margin - mon_h;
-  const int16_t top_y = mon_y - gap_y - top_h;  
+  //const int16_t mon_y = bounds.size.h - margin - mon_h;
+  //const int16_t top_y = mon_y - gap_y - top_h;  
 
   // Date (left bottom)
   /*if (!s_date_layer) {
@@ -106,25 +106,35 @@ static void layout_layers(Window *window) {
   layer_set_hidden(text_layer_get_layer(s_date_layer), false);*/
 
   if (!s_date_top_layer) {
-    s_date_top_layer = text_layer_create(GRect(margin, top_y, half_w - 2*margin, top_h));
+    s_date_top_layer = text_layer_create(
+      GRect(margin, bottom_y_long_date, half_w - 2*margin, top_h)
+    );
     text_layer_set_background_color(s_date_top_layer, GColorClear);
     text_layer_set_text_color(s_date_top_layer, GColorBlack);
     text_layer_set_text_alignment(s_date_top_layer, GTextAlignmentLeft);
     text_layer_set_font(s_date_top_layer, s_date_font);
     layer_add_child(root, text_layer_get_layer(s_date_top_layer));
   } else {
-    layer_set_frame(text_layer_get_layer(s_date_top_layer), GRect(margin, top_y, half_w - 2*margin, top_h));
+    layer_set_frame(
+      text_layer_get_layer(s_date_top_layer), 
+      GRect(margin, bottom_y_long_date, half_w - 2*margin, top_h)
+    );
   }
 
   if (!s_date_bottom_layer) {
-    s_date_bottom_layer = text_layer_create(GRect(margin, mon_y, half_w - 2*margin, mon_h));
+    s_date_bottom_layer = text_layer_create(
+      GRect(margin, bottom_y_short_date, half_w - 2*margin, mon_h)
+    );
     text_layer_set_background_color(s_date_bottom_layer, GColorClear);
     text_layer_set_text_color(s_date_bottom_layer, GColorBlack);
     text_layer_set_text_alignment(s_date_bottom_layer, GTextAlignmentLeft);
     text_layer_set_font(s_date_bottom_layer, s_date_font);
     layer_add_child(root, text_layer_get_layer(s_date_bottom_layer));
   } else {
-    layer_set_frame(text_layer_get_layer(s_date_bottom_layer), GRect(margin, mon_y, half_w - 2*margin, mon_h));
+    layer_set_frame(
+      text_layer_get_layer(s_date_bottom_layer), 
+      GRect(margin, bottom_y_short_date, half_w - 2*margin, mon_h)
+    );
   }
 
   // Time (right bottom)
