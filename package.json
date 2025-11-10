@@ -1,6 +1,6 @@
 {
   "name": "pebble-watchface-1",
-  "author": "MakeAwesomeHappen",
+  "author": "Matias Pendino",
   "version": "1.0.0",
   "keywords": ["pebble-app"],
   "private": true,
@@ -19,7 +19,7 @@
       "flint"
     ],
     "watchapp": {
-      "watchface": false
+      "watchface": true
     },
     "messageKeys": [
       "dummy"
