@@ -72,8 +72,8 @@ static void layout_layers(Window *window) {
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
 
   // Hide date on round
-  if (s_date_layer) {
-    layer_set_hidden(text_layer_get_layer(s_date_layer), true);
+  if (s_date_top_layer) {
+    layer_set_hidden(text_layer_get_layer(s_date_top_layer), true);
   }
 #else
   // RECTANGULAR: time bottom-right, date bottom-left
