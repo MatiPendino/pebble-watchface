@@ -24,7 +24,7 @@ static void main_window_load(Window *window) {
   GRect bounds = layer_get_bounds(window_layer);
 
   // Create GFont
-  s_time_font = fonts_load_custom_font(resource_get_handle(MICRO5_24));
+  s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_MICRO5_24));
 
   // Create the TextLayer with specific bounds
   s_time_layer = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(58, 52), bounds.size.w, 50));
