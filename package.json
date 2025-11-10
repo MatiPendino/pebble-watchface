@@ -28,7 +28,7 @@
       "media": [
         {
           "type": "font",
-          "name": "MICRO5_24",
+          "name": "MICRO_42",
           "file": "fonts/perfect-dos-vga.ttf",
           "compatibility":"2.7"
         }
