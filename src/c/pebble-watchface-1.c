@@ -61,9 +61,11 @@ static void layout_layers(Window *window) {
 
   // Heights
   const int16_t time_h = 42;
-  const int16_t date_h = 52;
+  const int16_t long_date_h = 48;
+  const int16_t short_date_h = 22;
   const int16_t bottom_y_time = bounds.size.h - margin - time_h;
-  const int16_t bottom_y_date = bounds.size.h - margin - date_h;
+  const int16_t bottom_y_long_date = bounds.size.h - margin - long_date_h;
+  const int16_t bottom_y_short_date = bounds.size.h - margin - short_date_h;
 
 #if defined(PBL_ROUND)
   // ROUND: time centered at bottom, no date
