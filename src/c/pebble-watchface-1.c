@@ -19,9 +19,23 @@ static void update_time() {
   text_layer_set_text(s_time_layer, s_buffer);
 
   // Write the current date into a buffer
-  static char s_date_buf[16];
   if (s_date_layer) {
-    strftime(s_date_buf, sizeof(s_date_buf), "%d %b", tick_time);
+    static char s_date_buf[24];
+    char wday[4];
+    char day[3];
+    char mon[4]; 
+
+    /*strftime(s_date_buf, sizeof(s_date_buf), "%d %b", tick_time);
+    text_layer_set_text(s_date_layer, s_date_buf);*/
+
+    // Add short weekday, remove possible leading zero day and short month
+    strftime(wday, sizeof(wday), "%a", t);
+    strftime(day,  sizeof(day),  "%d", t);
+    if (day[0] == '0') memmove(day, day + 1, 2);
+    strftime(mon,  sizeof(mon),  "%b", t);
+
+    // Short weekday + num day in line 1, Short month in line 2
+    snprintf(s_date_buf, sizeof(s_date_buf), "%s %s\n%s", wday, day, mon);
     text_layer_set_text(s_date_layer, s_date_buf);
   }
 }
@@ -35,7 +49,7 @@ static void layout_layers(Window *window) {
 
   // Heights
   const int16_t time_h = 42;
-  const int16_t date_h = 22;
+  const int16_t date_h = 32;
   const int16_t bottom_y_time = bounds.size.h - margin - time_h;
   const int16_t bottom_y_date = bounds.size.h - margin - date_h;
 
@@ -58,6 +72,7 @@ static void layout_layers(Window *window) {
     s_date_layer = text_layer_create(GRect(0, 0, 10, 10));
     text_layer_set_background_color(s_date_layer, GColorClear);
     text_layer_set_text_color(s_date_layer, GColorBlack);
+    text_layer_set_overflow_mode(s_date_layer, GTextOverflowModeWordWrap);
     text_layer_set_text_alignment(s_date_layer, GTextAlignmentLeft);
     text_layer_set_font(s_date_layer, s_date_font);
     layer_add_child(root, text_layer_get_layer(s_date_layer));
