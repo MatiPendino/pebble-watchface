@@ -82,11 +82,12 @@ static void layout_layers(Window *window) {
   layer_set_hidden(text_layer_get_layer(s_date_layer), false);
 
   // Time (right bottom)
-  GRect time_frame = GRect(
+  /*GRect time_frame = GRect(
     bounds.size.w - margin - (half_w - 2 * margin), bottom_y_time, half_w - 2 * margin, time_h
-  );
+  );*/
+  GRect time_frame = GRect(margin, bottom_y_time, bounds.size.w - 2 * margin, time_h);
   layer_set_frame(text_layer_get_layer(s_time_layer), time_frame);
-  text_layer_set_text_alignment(s_time_layer, GTextAlignmentRight);
+  text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
 #endif
 }
 
