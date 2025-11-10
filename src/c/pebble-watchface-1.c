@@ -78,7 +78,7 @@ static void layout_layers(Window *window) {
 #else
   // RECTANGULAR: time bottom-right, date bottom-left
   const int16_t half_w = bounds.size.w / 2;
-  const int16_t margin = 6;
+  //const int16_t margin = 6;
 
   // Sizes
   const int16_t top_h = 22;
@@ -119,7 +119,7 @@ static void layout_layers(Window *window) {
     text_layer_set_background_color(s_date_bottom_layer, GColorClear);
     text_layer_set_text_color(s_date_bottom_layer, GColorBlack);
     text_layer_set_text_alignment(s_date_bottom_layer, GTextAlignmentLeft);
-    text_layer_set_font(s_date_bottom_layer, s_month_font);
+    text_layer_set_font(s_date_bottom_layer, s_date_font);
     layer_add_child(root, text_layer_get_layer(s_date_bottom_layer));
   } else {
     layer_set_frame(text_layer_get_layer(s_date_bottom_layer), GRect(margin, mon_y, half_w - 2*margin, mon_h));
