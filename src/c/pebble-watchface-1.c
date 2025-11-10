@@ -20,7 +20,7 @@ static void update_time() {
 
   // Write the current date into a buffer
   if (s_date_layer) {
-    static char s_date_buf[24];
+    static char s_date_buf[48];
     char wday[4];
     char day[3];
     char mon[4]; 
@@ -32,7 +32,7 @@ static void update_time() {
     strftime(wday, sizeof(wday), "%a", tick_time);
     strftime(day,  sizeof(day),  "%d", tick_time);
     //if (day[0] == '0') memmove(day, day + 1, 2);
-    strftime(mon,  sizeof(mon),  "%b", tick_time);
+    strftime(mon,  sizeof(mon),  "%d %b", tick_time);
 
     // Short weekday + num day in line 1, Short month in line 2
     snprintf(s_date_buf, sizeof(s_date_buf), "%s %s\n%s", wday, day, mon);
@@ -82,9 +82,6 @@ static void layout_layers(Window *window) {
   layer_set_hidden(text_layer_get_layer(s_date_layer), false);
 
   // Time (right bottom)
-  /*GRect time_frame = GRect(
-    bounds.size.w - margin - (half_w - 2 * margin), bottom_y_time, half_w - 2 * margin, time_h
-  );*/
   GRect time_frame = GRect(margin, bottom_y_time, bounds.size.w - 2 * margin, time_h);
   layer_set_frame(text_layer_get_layer(s_time_layer), time_frame);
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentRight);
