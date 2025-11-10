@@ -29,7 +29,6 @@
         {
           "characterRegex": "[0-9:A-Za-z ]",
           "type": "font",
-          "size": 24,
           "name": "MICRO5_24",
           "file": "fonts/Micro5-Regular.ttf",
           "compatibility":"2.7"
