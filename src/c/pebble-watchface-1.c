@@ -23,7 +23,7 @@ static void update_time() {
     static char s_date_buf[48];
     char wday[4];
     char day[3];
-    char mon[4]; 
+    char mon[8]; 
 
     /*strftime(s_date_buf, sizeof(s_date_buf), "%d %b", tick_time);
     text_layer_set_text(s_date_layer, s_date_buf);*/
