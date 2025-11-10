@@ -27,7 +27,6 @@
     "resources": {
       "media": [
         {
-          "characterRegex": "[0-9:A-Za-z ]",
           "type": "font",
           "name": "MICRO5_24",
           "file": "fonts/Micro5-Regular.ttf",
