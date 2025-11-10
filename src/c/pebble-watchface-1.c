@@ -56,13 +56,12 @@ static void layout_layers(Window *window) {
   Layer *root = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(root);
 
-  // Margins: a bit larger on round to avoid the curved edge
   const int16_t margin = PBL_IF_ROUND_ELSE(14, 6);
 
   // Heights
   const int16_t time_h = 42;
-  const int16_t long_date_h = 48;
-  const int16_t short_date_h = 22;
+  const int16_t long_date_h = 40;
+  const int16_t short_date_h = 30;
   const int16_t bottom_y_time = bounds.size.h - margin - time_h;
   const int16_t bottom_y_long_date = bounds.size.h - margin - long_date_h;
   const int16_t bottom_y_short_date = bounds.size.h - margin - short_date_h;
@@ -80,16 +79,11 @@ static void layout_layers(Window *window) {
 #else
   // RECTANGULAR: time bottom-right, date bottom-left
   const int16_t half_w = bounds.size.w / 2;
-  //const int16_t margin = 6;
 
   // Sizes
   const int16_t top_h = 22;
   const int16_t mon_h = 16;
   const int16_t gap_y = 2;
-
-  // Y positions near bottom
-  //const int16_t mon_y = bounds.size.h - margin - mon_h;
-  //const int16_t top_y = mon_y - gap_y - top_h;  
 
   // Date (left bottom)
   /*if (!s_date_layer) {
