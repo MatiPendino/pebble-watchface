@@ -2,7 +2,9 @@
 
 static Window *s_main_window;
 static TextLayer *s_time_layer;
-static TextLayer *s_date_layer;
+//static TextLayer *s_date_layer;
+static TextLayer *s_date_top_layer;
+static TextLayer *s_date_bottom_layer;
 static GFont s_time_font, s_date_font;
 static BitmapLayer *s_background_layer;
 static GBitmap *s_background_bitmap;
@@ -19,14 +21,24 @@ static void update_time() {
   text_layer_set_text(s_time_layer, s_buffer);
 
   // Write the current date into a buffer
-  if (s_date_layer) {
-    static char s_date_buf[48];
+  if (s_date_top_layer && s_date_bottom_layer) {
+    static char top_buf[12];
+    static char mon_buf[8]; 
+
+    char wday[4], day[3];
+    strftime(wday, sizeof(wday), "%a", tick_time);
+    strftime(day,  sizeof(day),  "%d", tick_time);
+    if (day[0] == '0') memmove(day, day + 1, 2);
+
+    snprintf(top_buf, sizeof(top_buf), "%s %s", wday, day);
+    strftime(mon_buf, sizeof(mon_buf), "%b", tick_time);
+
+    text_layer_set_text(s_date_top_layer, top_buf);
+    text_layer_set_text(s_date_bottom_layer, mon_buf);
+    /*static char s_date_buf[48];
     char wday[4];
     char day[3];
     char mon[8]; 
-
-    /*strftime(s_date_buf, sizeof(s_date_buf), "%d %b", tick_time);
-    text_layer_set_text(s_date_layer, s_date_buf);*/
 
     // Add short weekday, remove possible leading zero day and short month
     strftime(wday, sizeof(wday), "%a", tick_time);
@@ -36,7 +48,7 @@ static void update_time() {
 
     // Short weekday + num day in line 1, Short month in line 2
     snprintf(s_date_buf, sizeof(s_date_buf), "%s %s\n%s", wday, day, mon);
-    text_layer_set_text(s_date_layer, s_date_buf);
+    text_layer_set_text(s_date_layer, s_date_buf);*/
   }
 }
 
@@ -66,9 +78,19 @@ static void layout_layers(Window *window) {
 #else
   // RECTANGULAR: time bottom-right, date bottom-left
   const int16_t half_w = bounds.size.w / 2;
+  const int16_t margin = 6;
+
+  // Sizes
+  const int16_t top_h = 22;
+  const int16_t mon_h = 16;
+  const int16_t gap_y = 2;
+
+  // Y positions near bottom
+  const int16_t mon_y = bounds.size.h - margin - mon_h;
+  const int16_t top_y = mon_y - gap_y - top_h;  
 
   // Date (left bottom)
-  if (!s_date_layer) {
+  /*if (!s_date_layer) {
     s_date_layer = text_layer_create(GRect(0, 0, 10, 10));
     text_layer_set_background_color(s_date_layer, GColorClear);
     text_layer_set_text_color(s_date_layer, GColorBlack);
@@ -79,7 +101,29 @@ static void layout_layers(Window *window) {
   }
   GRect date_frame = GRect(margin, bottom_y_date, half_w - 2 * margin, date_h);
   layer_set_frame(text_layer_get_layer(s_date_layer), date_frame);
-  layer_set_hidden(text_layer_get_layer(s_date_layer), false);
+  layer_set_hidden(text_layer_get_layer(s_date_layer), false);*/
+
+  if (!s_date_top_layer) {
+    s_date_top_layer = text_layer_create(GRect(margin, top_y, half_w - 2*margin, top_h));
+    text_layer_set_background_color(s_date_top_layer, GColorClear);
+    text_layer_set_text_color(s_date_top_layer, GColorBlack);
+    text_layer_set_text_alignment(s_date_top_layer, GTextAlignmentLeft);
+    text_layer_set_font(s_date_top_layer, s_date_font);
+    layer_add_child(root, text_layer_get_layer(s_date_top_layer));
+  } else {
+    layer_set_frame(text_layer_get_layer(s_date_top_layer), GRect(margin, top_y, half_w - 2*margin, top_h));
+  }
+
+  if (!s_date_bottom_layer) {
+    s_date_bottom_layer = text_layer_create(GRect(margin, mon_y, half_w - 2*margin, mon_h));
+    text_layer_set_background_color(s_date_bottom_layer, GColorClear);
+    text_layer_set_text_color(s_date_bottom_layer, GColorBlack);
+    text_layer_set_text_alignment(s_date_bottom_layer, GTextAlignmentLeft);
+    text_layer_set_font(s_date_bottom_layer, s_month_font);
+    layer_add_child(root, text_layer_get_layer(s_date_bottom_layer));
+  } else {
+    layer_set_frame(text_layer_get_layer(s_date_bottom_layer), GRect(margin, mon_y, half_w - 2*margin, mon_h));
+  }
 
   // Time (right bottom)
   GRect time_frame = GRect(margin, bottom_y_time, bounds.size.w - 2 * margin, time_h);
@@ -122,6 +166,14 @@ static void main_window_unload(Window *window) {
   fonts_unload_custom_font(s_time_font);
   bitmap_layer_destroy(s_background_layer);
   gbitmap_destroy(s_background_bitmap);
+  if (s_date_bottom_layer) { 
+    text_layer_destroy(s_date_bottom_layer);  
+    s_date_bottom_layer = NULL;
+  }
+  if (s_date_top_layer) { 
+    text_layer_destroy(s_date_top_layer);
+    s_date_top_layer = NULL;
+  }
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
