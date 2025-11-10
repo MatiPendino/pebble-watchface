@@ -33,6 +33,12 @@
           "compatibility":"2.7"
         },
         {
+          "type": "font",
+          "name": "MICRO_20",
+          "file": "fonts/micro-five-regular.ttf",
+          "compatibility":"2.7"
+        },
+        {
           "type": "bitmap",
           "name": "IMAGE_BACKGROUND",
           "file": "images/back.png"
