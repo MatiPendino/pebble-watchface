@@ -44,9 +44,9 @@ static void layout_layers(Window *window) {
   const int16_t margin = PBL_IF_ROUND_ELSE(14, 6);
 
   // Heights
-  const int16_t time_h = 42;
-  const int16_t long_date_h = 33;
-  const int16_t short_date_h = 23;
+  const int16_t time_h = 45;
+  const int16_t long_date_h = 32;
+  const int16_t short_date_h = 21;
   const int16_t bottom_y_time = bounds.size.h - margin - time_h;
   const int16_t bottom_y_long_date = bounds.size.h - margin - long_date_h;
   const int16_t bottom_y_short_date = bounds.size.h - margin - short_date_h;
@@ -124,7 +124,7 @@ static void main_window_load(Window *window) {
 
   // Load date and time fonts
   s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_MICRO_42));
-  s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_MICRO_20));
+  s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_MICRO_21));
 
   // Create Time Layer, add styles and append to window's root layer
   s_time_layer = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(58, 52), bounds.size.w, 50));
