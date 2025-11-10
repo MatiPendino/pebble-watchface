@@ -49,7 +49,7 @@ static void layout_layers(Window *window) {
 
   // Heights
   const int16_t time_h = 42;
-  const int16_t date_h = 32;
+  const int16_t date_h = 52;
   const int16_t bottom_y_time = bounds.size.h - margin - time_h;
   const int16_t bottom_y_date = bounds.size.h - margin - date_h;
 
