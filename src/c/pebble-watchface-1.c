@@ -2,7 +2,6 @@
 
 static Window *s_main_window;
 static TextLayer *s_time_layer;
-//static TextLayer *s_date_layer;
 static TextLayer *s_date_top_layer;
 static TextLayer *s_date_bottom_layer;
 static GFont s_time_font, s_date_font;
@@ -35,20 +34,6 @@ static void update_time() {
 
     text_layer_set_text(s_date_top_layer, top_buf);
     text_layer_set_text(s_date_bottom_layer, mon_buf);
-    /*static char s_date_buf[48];
-    char wday[4];
-    char day[3];
-    char mon[8]; 
-
-    // Add short weekday, remove possible leading zero day and short month
-    strftime(wday, sizeof(wday), "%a", tick_time);
-    strftime(day,  sizeof(day),  "%d", tick_time);
-    //if (day[0] == '0') memmove(day, day + 1, 2);
-    strftime(mon,  sizeof(mon),  "%d %b", tick_time);
-
-    // Short weekday + num day in line 1, Short month in line 2
-    snprintf(s_date_buf, sizeof(s_date_buf), "%s %s\n%s", wday, day, mon);
-    text_layer_set_text(s_date_layer, s_date_buf);*/
   }
 }
 
@@ -60,8 +45,8 @@ static void layout_layers(Window *window) {
 
   // Heights
   const int16_t time_h = 42;
-  const int16_t long_date_h = 40;
-  const int16_t short_date_h = 30;
+  const int16_t long_date_h = 33;
+  const int16_t short_date_h = 23;
   const int16_t bottom_y_time = bounds.size.h - margin - time_h;
   const int16_t bottom_y_long_date = bounds.size.h - margin - long_date_h;
   const int16_t bottom_y_short_date = bounds.size.h - margin - short_date_h;
@@ -82,23 +67,10 @@ static void layout_layers(Window *window) {
 
   // Sizes
   const int16_t top_h = 22;
-  const int16_t mon_h = 16;
+  const int16_t mon_h = 22;
   const int16_t gap_y = 2;
 
   // Date (left bottom)
-  /*if (!s_date_layer) {
-    s_date_layer = text_layer_create(GRect(0, 0, 10, 10));
-    text_layer_set_background_color(s_date_layer, GColorClear);
-    text_layer_set_text_color(s_date_layer, GColorBlack);
-    text_layer_set_overflow_mode(s_date_layer, GTextOverflowModeWordWrap);
-    text_layer_set_text_alignment(s_date_layer, GTextAlignmentLeft);
-    text_layer_set_font(s_date_layer, s_date_font);
-    layer_add_child(root, text_layer_get_layer(s_date_layer));
-  }
-  GRect date_frame = GRect(margin, bottom_y_date, half_w - 2 * margin, date_h);
-  layer_set_frame(text_layer_get_layer(s_date_layer), date_frame);
-  layer_set_hidden(text_layer_get_layer(s_date_layer), false);*/
-
   if (!s_date_top_layer) {
     s_date_top_layer = text_layer_create(
       GRect(margin, bottom_y_long_date, half_w - 2*margin, top_h)
