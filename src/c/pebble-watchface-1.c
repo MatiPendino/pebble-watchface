@@ -87,7 +87,7 @@ static void layout_layers(Window *window) {
   );*/
   GRect time_frame = GRect(margin, bottom_y_time, bounds.size.w - 2 * margin, time_h);
   layer_set_frame(text_layer_get_layer(s_time_layer), time_frame);
-  text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
+  text_layer_set_text_alignment(s_time_layer, GTextAlignmentRight);
 #endif
 }
 
