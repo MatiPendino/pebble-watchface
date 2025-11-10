@@ -29,7 +29,7 @@
         {
           "type": "font",
           "name": "MICRO5_24",
-          "file": "fonts/Micro5-Regular.ttf",
+          "file": "fonts/perfect-dos-vga.ttf",
           "compatibility":"2.7"
         }
       ]
