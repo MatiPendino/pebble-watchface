@@ -57,9 +57,9 @@ static void layout_layers(Window *window) {
   const int16_t margin = PBL_IF_ROUND_ELSE(14, 6);
 
   // Heights
-  const int16_t time_h = is_emery ? 58 : PBL_IF_ROUND_ELSE(58, 45);
-  const int16_t long_date_h = is_emery ? 43 : 32;
-  const int16_t short_date_h = is_emery ? 29 : 21;
+  const int16_t time_h = is_emery ? 59 : PBL_IF_ROUND_ELSE(58, 45);
+  const int16_t long_date_h = is_emery ? 51 : 32;
+  const int16_t short_date_h = is_emery ? 33 : 21;
   const int16_t bottom_y_time = bounds.size.h - margin - time_h;
   const int16_t bottom_y_long_date = bounds.size.h - margin - long_date_h;
   const int16_t bottom_y_short_date = bounds.size.h - margin - short_date_h;
@@ -85,7 +85,7 @@ static void layout_layers(Window *window) {
   // Date (left bottom)
   if (!s_date_top_layer) {
     s_date_top_layer = text_layer_create(
-      GRect(margin, bottom_y_long_date, half_w - 2*margin, top_h)
+      GRect(bottom_y_short_date, bottom_y_long_date, half_w - 2*margin, top_h)
     );
     text_layer_set_background_color(s_date_top_layer, GColorClear);
     text_layer_set_text_color(s_date_top_layer, GColorBlack);
@@ -140,7 +140,7 @@ static void main_window_load(Window *window) {
     is_emery ? RESOURCE_ID_MICRO_52 : PBL_IF_ROUND_ELSE(RESOURCE_ID_MICRO_52, RESOURCE_ID_MICRO_42)
   ));
   s_date_font = fonts_load_custom_font(resource_get_handle(
-    is_emery ? RESOURCE_ID_MICRO_24 : RESOURCE_ID_MICRO_21
+    is_emery ? RESOURCE_ID_MICRO_24 : RESOURCE_ID_MICRO_24
   ));
 
   // Create Time Layer, add styles and append to window's root layer
