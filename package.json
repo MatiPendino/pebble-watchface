@@ -38,10 +38,29 @@
           "file": "fonts/micro-five-regular.ttf",
           "compatibility":"2.7"
         },
+
         {
           "type": "bitmap",
           "name": "IMAGE_BACKGROUND",
           "file": "images/back.png"
+        },
+        { 
+          "type": "bitmap", 
+          "name": "IMG_BG_BASALT", 
+          "file": "images/basalt.jpg", 
+          "targetPlatforms": ["basalt", "aplite", "diorite"] 
+        },
+        { 
+          "type": "bitmap", 
+          "name": "IMG_BG_CHALK",  
+          "file": "images/chalk.jpg",  
+          "targetPlatforms": ["chalk"] 
+        },
+        { 
+          "type": "bitmap", 
+          "name": "IMG_BG_EMERY",  
+          "file": "images/emery.jpg",  
+          "targetPlatforms": ["emery"] 
         }
       ]
     }
