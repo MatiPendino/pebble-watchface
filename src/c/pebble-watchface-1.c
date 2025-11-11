@@ -1,4 +1,9 @@
 #include <pebble.h>
+#include <ctype.h>
+
+static void str_to_upper(char *s) {
+  for (; *s; ++s) *s = (char)toupper((unsigned char)*s);
+}
 
 static Window *s_main_window;
 static TextLayer *s_time_layer;
@@ -15,8 +20,11 @@ static void update_time() {
 
   // Write the current hours and minutes into a buffer
   static char s_buffer[8];
-  strftime(s_buffer, sizeof(s_buffer), clock_is_24h_style() ? "%H:%M" : "%I:%M", tick_time);
-  // Display this time on the TextLayer
+  strftime(s_buffer, sizeof(s_buffer), "%I:%M", tick_time);
+  // Remove leading zeros
+  if (s_buffer[0] == '0') {
+    memmove(s_buffer, s_buffer + 1, sizeof(s_buffer) - 1);
+  }
   text_layer_set_text(s_time_layer, s_buffer);
 
   // Write the current date into a buffer
@@ -24,13 +32,18 @@ static void update_time() {
     static char top_buf[12];
     static char mon_buf[8]; 
 
-    char wday[4], day[3];
+    char wday[4], day[3], mon[4];
     strftime(wday, sizeof(wday), "%a", tick_time);
     strftime(day,  sizeof(day),  "%d", tick_time);
     if (day[0] == '0') memmove(day, day + 1, 2);
+    strftime(mon,  sizeof(mon),  "%b", tick_time);
+
+    str_to_upper(wday);
+    str_to_upper(mon);
 
     snprintf(top_buf, sizeof(top_buf), "%s %s", wday, day);
-    strftime(mon_buf, sizeof(mon_buf), "%b", tick_time);
+    snprintf(mon_buf, sizeof(mon_buf), "%s", mon);
+    //strftime(mon_buf, sizeof(mon_buf), "%b", tick_time);
 
     text_layer_set_text(s_date_top_layer, top_buf);
     text_layer_set_text(s_date_bottom_layer, mon_buf);
