@@ -47,19 +47,19 @@
         { 
           "type": "bitmap", 
           "name": "IMG_BG", 
-          "file": "images/basalt.jpg", 
+          "file": "images/basalt.png", 
           "targetPlatforms": ["basalt", "aplite", "diorite", "flint"] 
         },
         { 
           "type": "bitmap", 
           "name": "IMG_BG",  
-          "file": "images/chalk.jpg",  
+          "file": "images/chalk.png",  
           "targetPlatforms": ["chalk"] 
         },
         { 
           "type": "bitmap", 
           "name": "IMG_BG",  
-          "file": "images/emery.jpg",  
+          "file": "images/emery.png",  
           "targetPlatforms": ["emery"] 
         }
       ]
