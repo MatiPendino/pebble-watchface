@@ -117,7 +117,7 @@ static void layout_layers(Window *window) {
   }
 
   // Time (right bottom)
-  const int16_t margin_right = is_emery ? 40 : 8;
+  const int16_t margin_right = 8;
   GRect time_frame = GRect(margin_right, bottom_y_time, bounds.size.w - 2 * margin, time_h);
   layer_set_frame(text_layer_get_layer(s_time_layer), time_frame);
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentRight);
