@@ -51,11 +51,6 @@
           "compatibility":"2.7"
         },
 
-        {
-          "type": "bitmap",
-          "name": "IMAGE_BACKGROUND",
-          "file": "images/back.png"
-        },
         { 
           "type": "bitmap", 
           "name": "IMG_BG", 
