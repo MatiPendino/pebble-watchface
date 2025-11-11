@@ -81,12 +81,12 @@ static void layout_layers(Window *window) {
   // Sizes
   const int16_t top_h = is_emery ? 25 : 22;
   const int16_t mon_h = is_emery ? 25 : 22;
-  const int16_t margin_horizontal = is_emery ? 14 : 8;
+  const int16_t margin_left = is_emery ? 14 : 8;
 
   // Date (left bottom)
   if (!s_date_top_layer) {
     s_date_top_layer = text_layer_create(
-      GRect(margin_horizontal, bottom_y_long_date, half_w - 2*margin, top_h)
+      GRect(margin_left, bottom_y_long_date, half_w - 2*margin, top_h)
     );
     text_layer_set_background_color(s_date_top_layer, GColorClear);
     text_layer_set_text_color(s_date_top_layer, GColorBlack);
@@ -96,13 +96,13 @@ static void layout_layers(Window *window) {
   } else {
     layer_set_frame(
       text_layer_get_layer(s_date_top_layer), 
-      GRect(margin_horizontal, bottom_y_long_date, half_w - 2*margin, top_h)
+      GRect(margin_left, bottom_y_long_date, half_w - 2*margin, top_h)
     );
   }
 
   if (!s_date_bottom_layer) {
     s_date_bottom_layer = text_layer_create(
-      GRect(margin_horizontal, bottom_y_short_date, half_w - 2*margin, mon_h)
+      GRect(margin_left, bottom_y_short_date, half_w - 2*margin, mon_h)
     );
     text_layer_set_background_color(s_date_bottom_layer, GColorClear);
     text_layer_set_text_color(s_date_bottom_layer, GColorBlack);
@@ -112,12 +112,13 @@ static void layout_layers(Window *window) {
   } else {
     layer_set_frame(
       text_layer_get_layer(s_date_bottom_layer), 
-      GRect(margin_horizontal, bottom_y_short_date, half_w - 2*margin, mon_h)
+      GRect(margin_left, bottom_y_short_date, half_w - 2*margin, mon_h)
     );
   }
 
   // Time (right bottom)
-  GRect time_frame = GRect(margin_horizontal, bottom_y_time, bounds.size.w - 2 * margin, time_h);
+  const int16_t margin_right = is_emery ? 40 : 8;
+  GRect time_frame = GRect(margin_right, bottom_y_time, bounds.size.w - 2 * margin, time_h);
   layer_set_frame(text_layer_get_layer(s_time_layer), time_frame);
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentRight);
 #endif
