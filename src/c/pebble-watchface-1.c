@@ -81,7 +81,7 @@ static void layout_layers(Window *window) {
   // Sizes
   const int16_t top_h = is_emery ? 25 : 22;
   const int16_t mon_h = is_emery ? 25 : 22;
-  const int16_t margin_horizontal = is_emery ? 25 : 22;
+  const int16_t margin_horizontal = is_emery ? 12 : 11;
 
   // Date (left bottom)
   if (!s_date_top_layer) {
