@@ -57,9 +57,9 @@ static void layout_layers(Window *window) {
   const int16_t margin = PBL_IF_ROUND_ELSE(14, 6);
 
   // Heights
-  const int16_t time_h = is_emery ? 59 : PBL_IF_ROUND_ELSE(58, 48);
-  const int16_t long_date_h = is_emery ? 47 : 32;
-  const int16_t short_date_h = is_emery ? 30 : 21;
+  const int16_t time_h = is_emery ? 59 : PBL_IF_ROUND_ELSE(58, 50);
+  const int16_t long_date_h = is_emery ? 45 : 34;
+  const int16_t short_date_h = is_emery ? 30 : 23;
   const int16_t bottom_y_time = bounds.size.h - margin - time_h;
   const int16_t bottom_y_long_date = bounds.size.h - margin - long_date_h;
   const int16_t bottom_y_short_date = bounds.size.h - margin - short_date_h;
@@ -81,7 +81,7 @@ static void layout_layers(Window *window) {
   // Sizes
   const int16_t top_h = is_emery ? 25 : 22;
   const int16_t mon_h = is_emery ? 25 : 22;
-  const int16_t margin_horizontal = is_emery ? 12 : 11;
+  const int16_t margin_horizontal = is_emery ? 14 : 8;
 
   // Date (left bottom)
   if (!s_date_top_layer) {
