@@ -57,7 +57,7 @@ static void layout_layers(Window *window) {
   const int16_t margin = PBL_IF_ROUND_ELSE(14, 6);
 
   // Heights
-  const int16_t time_h = is_emery ? 59 : PBL_IF_ROUND_ELSE(58, 45);
+  const int16_t time_h = is_emery ? 59 : PBL_IF_ROUND_ELSE(58, 52);
   const int16_t long_date_h = is_emery ? 51 : 32;
   const int16_t short_date_h = is_emery ? 33 : 21;
   const int16_t bottom_y_time = bounds.size.h - margin - time_h;
@@ -81,11 +81,12 @@ static void layout_layers(Window *window) {
   // Sizes
   const int16_t top_h = is_emery ? 25 : 22;
   const int16_t mon_h = is_emery ? 25 : 22;
+  const int16_t margin_horizontal = is_emery ? 25 : 22;
 
   // Date (left bottom)
   if (!s_date_top_layer) {
     s_date_top_layer = text_layer_create(
-      GRect(margin+time_h, bottom_y_long_date, half_w - 2*margin, top_h)
+      GRect(margin_horizontal, bottom_y_long_date, half_w - 2*margin, top_h)
     );
     text_layer_set_background_color(s_date_top_layer, GColorClear);
     text_layer_set_text_color(s_date_top_layer, GColorBlack);
@@ -95,13 +96,13 @@ static void layout_layers(Window *window) {
   } else {
     layer_set_frame(
       text_layer_get_layer(s_date_top_layer), 
-      GRect(margin, bottom_y_long_date, half_w - 2*margin, top_h)
+      GRect(margin_horizontal, bottom_y_long_date, half_w - 2*margin, top_h)
     );
   }
 
   if (!s_date_bottom_layer) {
     s_date_bottom_layer = text_layer_create(
-      GRect(margin, bottom_y_short_date, half_w - 2*margin, mon_h)
+      GRect(margin_horizontal, bottom_y_short_date, half_w - 2*margin, mon_h)
     );
     text_layer_set_background_color(s_date_bottom_layer, GColorClear);
     text_layer_set_text_color(s_date_bottom_layer, GColorBlack);
@@ -111,7 +112,7 @@ static void layout_layers(Window *window) {
   } else {
     layer_set_frame(
       text_layer_get_layer(s_date_bottom_layer), 
-      GRect(margin, bottom_y_short_date, half_w - 2*margin, mon_h)
+      GRect(margin_horizontal, bottom_y_short_date, half_w - 2*margin, mon_h)
     );
   }
 
