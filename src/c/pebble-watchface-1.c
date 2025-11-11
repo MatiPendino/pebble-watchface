@@ -2,7 +2,7 @@
 #include <ctype.h>
 
 // Choose resources per platform
-#if defined(PBL_PLATFORM_APLITE) || defined(PBL_PLATFORM_DIORITE) || defined(PBL_PLATFORM_BASALT)
+/*#if defined(PBL_PLATFORM_APLITE) || defined(PBL_PLATFORM_DIORITE) || defined(PBL_PLATFORM_BASALT)
   #define RES_BG      RESOURCE_ID_IMG_BG_BASALT
   #define RES_TIME_FN RESOURCE_ID_FONT_MICRO_42
   #define RES_DATE_FN RESOURCE_ID_FONT_MICRO_21
@@ -14,7 +14,7 @@
   #define RES_BG      RESOURCE_ID_IMG_BG_EMERY
   #define RES_TIME_FN RESOURCE_ID_FONT_MICRO_42
   #define RES_DATE_FN RESOURCE_ID_FONT_MICRO_21
-#endif
+#endif*/
 
 
 static void str_to_upper(char *s) {
@@ -144,15 +144,15 @@ static void main_window_load(Window *window) {
   GRect bounds = layer_get_bounds(window_layer);
 
   // Create GBitmap, Bitmaplayer, set the bitmap onto the layer and add to the window
-  s_background_bitmap = gbitmap_create_with_resource(RES_BG);
+  s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMG_BG);
   s_background_layer = bitmap_layer_create(bounds);
   bitmap_layer_set_alignment(s_background_layer, GAlignTop);
   bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_background_layer));
 
   // Load date and time fonts
-  s_time_font = fonts_load_custom_font(resource_get_handle(RES_TIME_FN));
-  s_date_font = fonts_load_custom_font(resource_get_handle(RES_DATE_FN));
+  s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_MICRO_42));
+  s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_MICRO_21));
 
   // Create Time Layer, add styles and append to window's root layer
   s_time_layer = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(58, 52), bounds.size.w, 50));
