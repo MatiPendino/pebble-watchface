@@ -85,7 +85,7 @@ static void layout_layers(Window *window) {
   // Date (left bottom)
   if (!s_date_top_layer) {
     s_date_top_layer = text_layer_create(
-      GRect(bottom_y_short_date, bottom_y_long_date, half_w - 2*margin, top_h)
+      GRect(margin+time_h, bottom_y_long_date, half_w - 2*margin, top_h)
     );
     text_layer_set_background_color(s_date_top_layer, GColorClear);
     text_layer_set_text_color(s_date_top_layer, GColorBlack);
@@ -137,10 +137,10 @@ static void main_window_load(Window *window) {
   // Load date and time fonts
   bool is_emery = (bounds.size.w == 200);
   s_time_font = fonts_load_custom_font(resource_get_handle(
-    is_emery ? RESOURCE_ID_MICRO_52 : PBL_IF_ROUND_ELSE(RESOURCE_ID_MICRO_52, RESOURCE_ID_MICRO_42)
+    is_emery ? RESOURCE_ID_MICRO_52 : PBL_IF_ROUND_ELSE(RESOURCE_ID_MICRO_52, RESOURCE_ID_MICRO_48)
   ));
   s_date_font = fonts_load_custom_font(resource_get_handle(
-    is_emery ? RESOURCE_ID_MICRO_24 : RESOURCE_ID_MICRO_24
+    is_emery ? RESOURCE_ID_MICRO_24 : RESOURCE_ID_MICRO_21
   ));
 
   // Create Time Layer, add styles and append to window's root layer
