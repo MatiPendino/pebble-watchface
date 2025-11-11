@@ -48,7 +48,7 @@
           "type": "bitmap", 
           "name": "IMG_BG", 
           "file": "images/basalt.jpg", 
-          "targetPlatforms": ["basalt", "aplite", "diorite"] 
+          "targetPlatforms": ["basalt", "aplite", "diorite", "flint"] 
         },
         { 
           "type": "bitmap", 
