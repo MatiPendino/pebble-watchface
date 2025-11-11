@@ -142,7 +142,7 @@ static void main_window_load(Window *window) {
     is_emery ? RESOURCE_ID_MICRO_52 : PBL_IF_ROUND_ELSE(RESOURCE_ID_MICRO_52, RESOURCE_ID_MICRO_48)
   ));
   s_date_font = fonts_load_custom_font(resource_get_handle(
-    is_emery ? RESOURCE_ID_MICRO_24 : RESOURCE_ID_MICRO_21
+    is_emery ? RESOURCE_ID_MICRO_24 : RESOURCE_ID_MICRO_20
   ));
 
   // Create Time Layer, add styles and append to window's root layer
