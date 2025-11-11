@@ -57,9 +57,9 @@ static void layout_layers(Window *window) {
   const int16_t margin = PBL_IF_ROUND_ELSE(14, 6);
 
   // Heights
-  const int16_t time_h = is_emery ? 59 : PBL_IF_ROUND_ELSE(58, 50);
-  const int16_t long_date_h = is_emery ? 45 : 34;
-  const int16_t short_date_h = is_emery ? 30 : 23;
+  const int16_t time_h = is_emery ? 59 : PBL_IF_ROUND_ELSE(58, 49);
+  const int16_t long_date_h = is_emery ? 44 : 33;
+  const int16_t short_date_h = is_emery ? 29 : 22;
   const int16_t bottom_y_time = bounds.size.h - margin - time_h;
   const int16_t bottom_y_long_date = bounds.size.h - margin - long_date_h;
   const int16_t bottom_y_short_date = bounds.size.h - margin - short_date_h;
@@ -117,7 +117,7 @@ static void layout_layers(Window *window) {
   }
 
   // Time (right bottom)
-  GRect time_frame = GRect(margin, bottom_y_time, bounds.size.w - 2 * margin, time_h);
+  GRect time_frame = GRect(margin_horizontal, bottom_y_time, bounds.size.w - 2 * margin, time_h);
   layer_set_frame(text_layer_get_layer(s_time_layer), time_frame);
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentRight);
 #endif
